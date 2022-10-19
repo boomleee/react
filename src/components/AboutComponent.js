@@ -85,7 +85,7 @@ function About(props) {
                 </div>
                 <div className="col-12">
                     {leaders}
-                </div>
+                </div>  
             </div>
         </div>
     );
