@@ -1,5 +1,6 @@
 import { Card, CardImg, CardText, CardBody, CardTitle, ListGroup, ListGroupItem, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import dateFormat from 'dateformat';
+import CommentForm from './CommentFormComponent';
 import { Link } from 'react-router-dom';
 
 function RenderDish({dish}) {
@@ -37,6 +38,8 @@ function RenderComments({ comments }) {
                 <ListGroup>
                     {list}
                 </ListGroup>
+                <CommentForm />
+
             </div>
         )
     } else {
