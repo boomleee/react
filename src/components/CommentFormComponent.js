@@ -74,7 +74,7 @@ class CommentForm extends Component {
                             <Label htmlFor="rating">Rating</Label>
                         </FormGroup>
                         <FormGroup>
-                            <Input type="number" id="rating" name="rating" max='5' min='1'
+                            <Input type="number" id="rating" name="rating" max='5' min='1' 
                                 placeholder='1'
                             />
                         </FormGroup>
