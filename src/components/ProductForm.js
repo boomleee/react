@@ -4,6 +4,8 @@ import { Breadcrumb, BreadcrumbItem, Button, Label, Col, Row } from 'reactstrap'
 import ProductTable from './ProductListComponent';
 
 const required = (val) => val && val.length;
+const maxLength = (len) => (val) => !(val) || (val.length <= len);
+const minLength = (len) => (val) => val && (val.length >= len);
 const isNumber = (val) => !isNaN(Number(val));
 
 class Form extends Component {
@@ -15,9 +17,9 @@ class Form extends Component {
             abbr: null,
         }
     }
-   
+
     handleSubmit(values) {
-       
+
         this.setState({
             id: values.id,
             name: values.name,
@@ -40,8 +42,17 @@ class Form extends Component {
                             placeholder="ID"
 
                             className="form-control"
+                            validators={{
+                                required, minLength: minLength(3), maxLength: maxLength(15)
+                            }}
 
                         />
+                        <Errors className="text-danger" model=".id" show="touched"
+                            messages={{
+                                required: 'Required',
+                                minLength: 'Must be greater than 2 characters',
+                                maxLength: 'Must be 15 characters or less'
+                            }} />
 
                     </Col>
 
@@ -58,8 +69,16 @@ class Form extends Component {
                             placeholder="Name"
 
                             className="form-control"
-
+                            validators={{
+                                required, minLength: minLength(3), maxLength: maxLength(15)
+                            }}
                         />
+                        <Errors className="text-danger" model=".name" show="touched"
+                            messages={{
+                                required: 'Required',
+                                minLength: 'Must be greater than 2 characters',
+                                maxLength: 'Must be 15 characters or less'
+                            }} />
 
                     </Col>
 
@@ -75,14 +94,23 @@ class Form extends Component {
                             placeholder="ABBR"
 
                             className="form-control"
+                            validators={{
+                                required, minLength: minLength(3), maxLength: maxLength(15)
+                            }}
 
                         />
+                        <Errors className="text-danger" model=".abbr" show="touched"
+                            messages={{
+                                required: 'Required',
+                                minLength: 'Must be greater than 2 characters',
+                                maxLength: 'Must be 15 characters or less'
+                            }} />
 
                     </Col>
 
                 </Row>
                 <Row className="form-group">
-                    <Col md={{ size: 1, offset: 9 }}>
+                    <Col md={{ size: 1, offset: 10 }}>
 
                         <Button type="reset" color="danger">
 
@@ -94,7 +122,7 @@ class Form extends Component {
 
                     <Col md={{ size: 1 }}>
 
-                        <Button type="submit" color="primary">
+                        <Button type="submit" color="primary" className='pl-3 pr-3  '>
 
                             Add
 
@@ -115,7 +143,7 @@ class Form extends Component {
         return (
             <div>
                 {this.addItem()}
-                <ProductTable products={this.props.products} id ={this.state.id} name ={this.state.name} abbr ={this.state.abbr} />
+                <ProductTable products={this.props.products} id={this.state.id} name={this.state.name} abbr={this.state.abbr} />
             </div>
         );
     }

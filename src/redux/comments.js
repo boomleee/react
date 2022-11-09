@@ -1,12 +1,19 @@
-import { COMMENTS } from '../shared/comments';
-export const Comments = (state = COMMENTS, action) => {
+import * as ActionTypes from './ActionTypes';
 
-    switch (action.type) {
+export const Comments = (state = { errMess: null, comments:[]}, action) => {
+  switch (action.type) {
+    case ActionTypes.ADD_COMMENTS:
+      return {...state, errMess: null, comments: action.payload};
 
-        default:
+    case ActionTypes.COMMENTS_FAILED:
+      return {...state, errMess: action.payload};
 
-            return state;
+    case ActionTypes.ADD_COMMENT:
+        var comment = action.payload;
+        
+        return { ...state, comments: state.comments.concat(comment)};
 
-    }
-
+    default:
+      return state;
+  }
 };
